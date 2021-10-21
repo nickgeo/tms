@@ -1,18 +1,17 @@
 #!/bin/bash
-sudo -i
 
 # install packages
-apt-get -y update && apt-get -y upgrade
-apt-get install -y docker.io docker-compose
-apt-get install -y python-pip python3-pip python3-venv
+sudo apt-get -y update && apt-get -y upgrade
+sudo apt-get install -y docker.io docker-compose
+sudo apt-get install -y python-pip python3-pip python3-venv
 
 # create new user
-adduser odm
-usermod -aG  odm
-usermod -aG docker odm
+sudo adduser odm
+sudo usermod -aG  odm
+sudo usermod -aG docker odm
 
 # make service to run at startup
-cat <<'EOF' >> /etc/systemd/system/webodm.service
+sudo cat <<'EOF' >> /etc/systemd/system/webodm.service
 [Unit]
 Description=WebODM
 After=network.target
@@ -34,18 +33,18 @@ WantedBy=multi-user.target
 EOF
 
 # change owner of service
-chown odm:odm /etc/systemd/system/webodm.service
+sudo chown odm:odm /etc/systemd/system/webodm.service
 
 # make app folder
-mkdir /webodm/
-cd /webodm/
+sudo mkdir /webodm/
+sudo cd /webodm/
 
 # download app code
-git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1
+sudo git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1
 
 # change owner of app folder recursively
-chown -R odm:odm /webodm/
+sudo chown -R odm:odm /webodm/
 
 # enable and start service
-systemctl enable webodm
-systemctl status webodm
+sudo systemctl enable webodm
+sudo systemctl status webodm
