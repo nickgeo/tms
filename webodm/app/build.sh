@@ -37,7 +37,7 @@ sudo chown odm:odm /etc/systemd/system/webodm.service
 
 # make app folder
 sudo mkdir /webodm/
-sudo cd /webodm/
+cd /webodm/
 
 # download app code
 sudo git clone https://github.com/OpenDroneMap/WebODM --config core.autocrlf=input --depth 1
