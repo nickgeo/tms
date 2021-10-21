@@ -7,7 +7,7 @@ sudo apt-get install -y python-pip python3-pip python3-venv
 
 # create new user
 sudo adduser odm
-sudo usermod -aG  odm
+sudo usermod -aG sudo odm
 sudo usermod -aG docker odm
 
 # make service to run at startup
